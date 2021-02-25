@@ -322,7 +322,7 @@ get_current_version() {
 get_latest_version() {
   # Get Xray latest release version number
   TMP_FILE="$(mktemp)"
-  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/guanhemeng/Xray-core/releases/latest'; then
+  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/Funny-T/Xray-core/releases/latest'; then
     "rm" "$TMP_FILE"
     echo 'error: Failed to get release list, please check your network.'
     exit 1
@@ -340,7 +340,7 @@ get_latest_version() {
   fi
   "rm" "$TMP_FILE"
   RELEASE_LATEST="v${RELEASE_LATEST#v}"
-  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/guanhemeng/Xray-core/releases'; then
+  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/Funny-T/Xray-core/releases'; then
     "rm" "$TMP_FILE"
     echo 'error: Failed to get release list, please check your network.'
     exit 1
@@ -360,7 +360,7 @@ get_latest_version() {
   for i in ${!releases_list[@]}
   do
     releases_list[$i]="v${releases_list[$i]#v}"
-    grep -q "https://github.com/guanhemeng/Xray-core/releases/download/${releases_list[$i]}/Xray-linux-$MACHINE.zip" "$TMP_FILE" && break
+    grep -q "https://github.com/Funny-T/Xray-core/releases/download/${releases_list[$i]}/Xray-linux-$MACHINE.zip" "$TMP_FILE" && break
   done
   "rm" "$TMP_FILE"
   PRE_RELEASE_LATEST="${releases_list[$i]}"
@@ -404,7 +404,7 @@ version_gt() {
 }
 
 download_xray() {
-  DOWNLOAD_LINK="https://github.com/guanhemeng/Xray-core/releases/download/$INSTALL_VERSION/Xray-linux-$MACHINE.zip"
+  DOWNLOAD_LINK="https://github.com/Funny-T/Xray-core/releases/download/$INSTALL_VERSION/Xray-linux-$MACHINE.zip"
   echo "Downloading Xray archive: $DOWNLOAD_LINK"
   if ! curl -x "${PROXY}" -R -H 'Cache-Control: no-cache' -o "$ZIP_FILE" "$DOWNLOAD_LINK"; then
     echo 'error: Download failed! Please check your network or try again.'
